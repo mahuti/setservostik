@@ -1,16 +1,18 @@
-setservostik has been coded on debian 9 and comes with a CMakeLists.txt
-allowing you to generate the correct files for your build system.
+15/09/2018
 
-The default cmake that ships with debian 9 is 3.7.2
-3.7.2 is also the version that is specified in the CMakeLists.txt file
+setservostik has been developed on a debian 9 system and compiled with gcc 6.3
+It comes with a CMakeLists.txt allowing you to generate the correct files for your build system.
 
-If your distro has a lower version adapt the version number in the CMakeLists.txt file
+The default cmake that ships with debian 9 at the time of writing is 3.7.2 .
+3.7.2 is also the version that is specified in the CMakeLists.txt file.
 
-if you don't have cmake installed you can apt-get install cmake
+If your distro has a lower version adapt the version number in the CMakeLists.txt file.
+
+If you don't have cmake installed you can install it using 'apt-get install cmake' as super user.
 
 compilation:
 
-cd to the folder you extracted the archive to
+cd 'folder you extracted the archive to'
 cmake .
 make
-make install
+make install (as super user)
