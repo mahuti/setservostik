@@ -1,0 +1,7 @@
+image: ubuntu:18.04
+
+pipelines:
+  default:
+    - step:
+        script:
+          - ci-build.sh
