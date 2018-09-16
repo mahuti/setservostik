@@ -4,4 +4,4 @@ pipelines:
   default:
     - step:
         script:
-          - ci-build.sh
+          - ./ci-build.sh
