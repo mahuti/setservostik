@@ -6,9 +6,9 @@ setservostik is a command line utility to set the status of the [Ultimarc Servos
 
 # compilation:
 
-cd 'folder you extracted the archive to'
-mkdir -p builds/unix
-cd builds/unix
-cmake ../..
-make
-make install (as super user)
+    cd 'folder you extracted the archive to'
+    mkdir -p builds/unix
+    cd builds/unix
+    cmake ../..
+    make
+    make install (as super user)
