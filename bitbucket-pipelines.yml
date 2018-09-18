@@ -1,4 +1,4 @@
-image: silverfieldstech/cpp:pipeline-1.0
+image: treaves/cpp:pipeline-1.0
 
 pipelines:
   default:
