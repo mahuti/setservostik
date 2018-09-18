@@ -1,8 +1,12 @@
-cmake_minimum_required(VERSION 3.7.2)
-project(setservostik)
+cmake_minimum_required(VERSION 3.5.0)
+
+project(setservostik LANGUAGES CXX)
+
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(setservostik setservostik.cpp)
-target_link_libraries(setservostik usb-1.0)
+# Use customized cmake macros
+SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
+find_package(LibUSB REQUIRED)
 
-install(TARGETS setservostik DESTINATION bin)
+add_subdirectory(src)
+

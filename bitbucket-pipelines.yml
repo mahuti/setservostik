@@ -1,0 +1,7 @@
+image: treaves/cpp:pipeline-1.0
+
+pipelines:
+  default:
+    - step:
+        script:
+          - ./ci-build.sh
