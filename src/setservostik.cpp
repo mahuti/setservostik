@@ -76,7 +76,12 @@ auto rotatestick(int way) {
 
     rc = libusb_init(&context);
     if (rc != LIBUSB_SUCCESS) { errorhandler(context, devicehandle, rc); }
-    libusb_set_debug(context, LIBUSB_LOG_LEVEL_INFO);
+
+    #if LIBUSB_API_VERSION >= 0x01000106
+        libusb_set_option(context, LIBUSB_OPTION_LOG_LEVEL, LIBUSB_LOG_LEVEL_WARNING);
+    #else
+        libusb_set_debug(context, LIBUSB_LOG_LEVEL_WARNING);
+    #endif
 
     if (!getdevice(context, SERVOSTIK_VENDOR, SERVOSTIK_PRODUCT, device)) {
         std::stringstream ss;
