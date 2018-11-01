@@ -18,7 +18,7 @@
    contact: gijsbrecht.dewaegeneer@ telenet.be
  */
 
-#include "SetServoConfig.h"
+#include "Config.h"
 
 #include <iostream>
 #include <libusb-1.0/libusb.h>
