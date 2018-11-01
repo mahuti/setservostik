@@ -1,6 +1,6 @@
 /*
    setservostik - rotates Ultimarc's ServoStick joystick to 4 or 8 way
-   Copyright (C) 2018 De Waegeneer Gijsbrecht
+   Copyright (C) 2018 Gijsbrecht De Waegeneer
    Copyright (C) 2018 Timothy Reaves
 
    This program is free software: you can redistribute it and/or modify
@@ -74,9 +74,9 @@ auto rotatestick(int way) {
    auto deviceCount = libusb_get_device_list(context, &devices);
 
    for (auto deviceIndex(0); deviceIndex < deviceCount; deviceIndex++) {
-      device                              = devices[deviceIndex];
+      device = devices[deviceIndex];
       libusb_device_descriptor descriptor = {};
-      auto                     rc         = libusb_get_device_descriptor(device, &descriptor);
+      rc = libusb_get_device_descriptor(device, &descriptor);
       if (rc != LIBUSB_SUCCESS) {
          std::cout << "WARNING: " << libusb_error_name(rc) << " - " << libusb_strerror(static_cast<libusb_error>(rc))
                    << " - trying to proceed...\n";
@@ -85,6 +85,7 @@ auto rotatestick(int way) {
             break;
          }
       }
+      device = nullptr;
    }
 
    if (device == nullptr) {
@@ -103,12 +104,7 @@ auto rotatestick(int way) {
                errorhandler(context, deviceHandle, rc);
             }
          }
-#ifndef __APPLE__
-         rc = libusb_claim_interface(deviceHandle, SERVOSTIK_INTERFACE);
-         if (rc != LIBUSB_SUCCESS) {
-            errorhandler(context, deviceHandle, rc);
-         }
-#endif
+
          unsigned char message[SERVOSTIK_MESG_LENGTH] = { 0x00, 0x00, 0x00, 0x00 };   // 4-way
          if (way == 8) {
             message[3] = 0x01;
@@ -122,12 +118,6 @@ auto rotatestick(int way) {
                                       SERVOSTIK_MESG_LENGTH,
                                       UM_TIMEOUT);
          std::cout << "servostik " << way << "-way -> " << ((rc == sizeof(message)) ? "SUCCESS" : "FAILURE") << "\n";
-#ifndef __APPLE__
-         rc = libusb_release_interface(deviceHandle, SERVOSTIK_INTERFACE);
-         if (rc != LIBUSB_SUCCESS) {
-            errorhandler(context, deviceHandle, rc);
-         }
-#endif
       }
    }
    libusb_free_device_list(devices, 1);
@@ -146,7 +136,7 @@ int main(int argc, char * argv[]) {
          }
          break;
       default:
-         std::cout << " _____    _   _____             _____ _   _ _   \n"
+         std::cout << " _____     _   _____                 _____ _   _ _   \n"
                       "|   __|___| |_|   __|___ ___ _ _ ___|   __| |_|_| |_  \n"
                       "|__   | -_|  _|__   | -_|  _| | | . |__   |  _| | '_| \n"
                       "|_____|___|_| |_____|___|_|  \\_/|___|_____|_| |_|_,_| \n"
