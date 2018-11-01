@@ -15,11 +15,12 @@ find_package(LibUSB REQUIRED)
 
 # configure a header file to pass some of the CMake settings to the source code
 configure_file (
-        "${PROJECT_SOURCE_DIR}/SetServoConfig.h.in"
-        "${PROJECT_BINARY_DIR}/SetServoConfig.h"
+  "${PROJECT_SOURCE_DIR}/SetServoConfig.h.in"
+  "${PROJECT_BINARY_DIR}/SetServoConfig.h"
 )
 # add the binary tree to the search path for include files so that we will find SetServoConfig.h
 include_directories("${PROJECT_BINARY_DIR}")
 
 
 add_subdirectory(src)
+
